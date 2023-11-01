@@ -5,7 +5,7 @@ class Bdd
   private $bdd;
 
   public function __construct(){
-    include 'data.php';
+    require_once  'data.php';
     $dsn = 'mysql:dbname=pmu_bdd;host=localhost:3306'; 
     $dbUser = recupnam();
     $dbPwd = recuppwd();
