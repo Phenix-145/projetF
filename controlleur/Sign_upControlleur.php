@@ -28,20 +28,15 @@ if ( !empty($_POST['password'] && !empty($_POST['speudo']) && !empty($_POST['Rpa
 
         require_once "../bdd/bdd.php";
         $bdd = new Bdd();
-        $log = $bdd->newUser($login,$mdp,$salt);
-        if (!empty($log)){
-            $speudo =$log[0]['speudo'];
-            $log = $log[0]['NumClient'];
-            }
+        $testNew = $bdd->newUser($login,$mdp,$salt);
         }
     }
 
-    if (!empty($log)) {
+    if (!empty($testNew) && $testNew == true) {
       
     session_start([]);
 
-    $_SESSION["login"] = $log;
-    $_SESSION["speudo"] = $speudo;
+    $_SESSION["speudo"] = $login;
 
         header("Location: ../index.php");
         echo "Vous êtes connecté !";
@@ -50,4 +45,3 @@ if ( !empty($_POST['password'] && !empty($_POST['speudo']) && !empty($_POST['Rpa
         header("Refresh: 0; ../Login.php?error=". htmlspecialchars($_GET['error']));
         exit;
     }
-?>

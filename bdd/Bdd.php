@@ -5,9 +5,10 @@ class Bdd
   private $bdd;
 
   public function __construct(){
+    include 'data.php';
     $dsn = 'mysql:dbname=pmu_bdd;host=localhost:3306'; 
-    $dbUser = 'root';
-    $dbPwd = 'vpOSlAgFGNeP3Lm$iM';
+    $dbUser = recupnam();
+    $dbPwd = recuppwd();
 
     try {
       $this->bdd = new PDO($dsn, $dbUser, $dbPwd);
