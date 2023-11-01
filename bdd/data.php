@@ -1,9 +1,9 @@
 <?php
 function recupnam() {
-    return "name";
+    return 'name';
 }
 function recuppwd() {
-    return "xxxxx";
+    return 'xxxxx';
 }
 
 
