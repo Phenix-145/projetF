@@ -5,6 +5,13 @@
 <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Login</button>
 </div>
 
+<?php
+if (isset($_GET['error'])) {
+  $messageErreur = $_GET['error'];
+  echo '<div class="erreur">' . htmlspecialchars($messageErreur) . '</div>';
+}
+?>
+
 <div id="id01" class="modal">
   <span onclick="document.getElementById('id01').style.display='none'" class="close">&times;</span>
   <form class="modal-content" method="post" action="controlleur/Sign_upControlleur.php">
@@ -15,7 +22,7 @@
       <input type="text" placeholder="Enter Email" name="email"> -->
       
       <label for="speudo"><b>Speudo</b></label>
-      <input type="text" placeholder="Enter un Speudo" name="speudo" required>
+      <input type="text" placeholder="Enter un Speudo" name="speudo" autocomplete="off" required>
 
       <label for="password"><b>Mot de passe</b></label>
       <input type="password" placeholder="Enter un mot de passe" name="password" required>
@@ -38,7 +45,7 @@
     <div class="container">
       
       <label for="speudo"><b>Speudo</b></label>
-      <input type="text" placeholder="Enter votre Speudo" name="speudo" required>
+      <input type="text" placeholder="Enter votre Speudo" name="speudo" autocomplete="off" required>
 
       <label for="password"><b>Mot de passe</b></label>
       <input type="password" placeholder="Enter votre mot de passe" name="password" required>

@@ -20,7 +20,7 @@ button {
   background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
-  margin: 8px 4px;
+  margin: 0px 4px;
   border: none;
   cursor: pointer;
   width: 100%;
@@ -101,4 +101,12 @@ hr {
 
 #centree{
     justify-content: center;
+}
+
+.erreur{
+  color: red;
+  text-align: center;
+  font-size: 23px;
+  margin-top: 12%;
+  font-weight: bolder;
 }

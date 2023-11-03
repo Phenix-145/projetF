@@ -31,6 +31,13 @@ class Bdd
     return $query->fetch();
   }
 
+  public function getsel($login){
+    $sql = "SELECT sel AS salt FROM  projetf.user WHERE login_user = :user";
+    $query = $this->bdd->prepare($sql);
+    $query->execute(array(":user" => $login));
+    return $query->fetch();
+  }
+
   public function newuser($login, $pwd, $sel){
     $sql = "INSERT INTO projetf.user (login_user, password, sel) VALUES (:user, :motDePasse, :sel)";
     try {
