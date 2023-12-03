@@ -1,3 +1,4 @@
+
 <div id="mySidenav" class="sidenav">
     <button class="openbtn" onclick="openinventaireC()" id="Carte">Carte</button>
     <button class="openbtn" onclick="openinventaireI()" id="Item">Item</button>

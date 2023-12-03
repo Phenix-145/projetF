@@ -38,7 +38,8 @@ if ( !empty($_POST['password'] && !empty($_POST['speudo']) && !empty($_POST['Rpa
     $log = $bdd->getConnexion($login, $mdphash);
     if (!empty($log)) {
         $_SESSION["speudo"] = $log[0]['speudo'];
-        $_SESSION["login"]  = $log[0]['NumClient'];
+        $_SESSION["NClient"]  = $log[0]['NumClient'];
+        $testpartie = false; //conte crée donc pas de partie
     }else {
         $_GET['error'] = "une erreur ces produit veuillez vous login.";
         header("Refresh: 0; ../Login.php?error=". urlencode(htmlspecialchars($_GET['error'], ENT_QUOTES, 'UTF-8')));

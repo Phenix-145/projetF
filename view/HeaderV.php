@@ -8,3 +8,12 @@
 </head>
 
 <body>
+    <?php
+    if (isset($_SESSION['login'])) {
+        ?>
+        <div id="user">
+            <form method="post" action="controlleur/deconnexion.php">
+                <button type="submit">Déconnexion</button>
+            </form>
+        </div>
+    <?php } ?>

@@ -18,18 +18,18 @@ if (!empty($_POST['password'] && !empty($_POST['speudo']))) {
         $mdphash =  hash("sha512", $mdpsalé);
         $log = $bdd->getConnexion($login, $mdphash);
         if (!empty($log)) {
-            $speudo = $log[0]['speudo'];
-            $log = $log[0]['NumClient'];
+            $speudo = $log['speudo'];
+            $log = $log['NumClient'];
         }
     }
 }
 
 if (!empty($log)) {
 
-    session_start([]);
 
-    $_SESSION["login"] = $log;
+    $_SESSION["NClient"] = $log;
     $_SESSION["speudo"] = $speudo;
+    
 
     header("Location: ../index.php");
 } else {

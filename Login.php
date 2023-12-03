@@ -1,8 +1,8 @@
 <?php require('view/HeaderV.php')?>
 
 <div class="box" id="centree">
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
-<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Login</button>
+<button class="boutonPageLogin" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Sign Up</button>
+<button class="boutonPageLogin" onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Login</button>
 </div>
 
 <?php
@@ -17,9 +17,6 @@ if (isset($_GET['error'])) {
   <form class="modal-content" method="post" action="controlleur/Sign_upControlleur.php">
     <div class="container">
       <p>Veuillez remplir ce formulaire pour créer un compte.</p>
-      <hr>
-      <!-- <label class="box" for="email"><b>Email<span id="asterisk">*</b></span> <div id="message">L'Email n'est pas obligatoire</div></label>
-      <input type="text" placeholder="Enter Email" name="email"> -->
       
       <label for="speudo"><b>Speudo</b></label>
       <input type="text" placeholder="Enter un Speudo" name="speudo" autocomplete="off" required>
@@ -33,7 +30,7 @@ if (isset($_GET['error'])) {
       <!-- <p>En créant un compte, vous acceptez nos <a href="#" style="color:dodgerblue">conditions et confidentialité</a>.</p> -->
 
       <div class="clearfix">
-        <button type="submit" class="signupbtn">Sign Up</button>
+        <button type="submit" class="signupbtn, boutonPageLogin">Sign Up</button>
       </div>
     </div>
   </form>
@@ -51,7 +48,7 @@ if (isset($_GET['error'])) {
       <input type="password" placeholder="Enter votre mot de passe" name="password" required>
 
       <div class="clearfix">
-        <button type="submit" class="signupbtn">Login</button>
+        <button type="submit" class="signupbtn, boutonPageLogin">Login</button>
       </div>
     </div>
   </form>

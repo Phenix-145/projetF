@@ -11,6 +11,12 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require('view/HeaderV.php');
 
-require('view/curentgame.php');
+require('view/InfoUserV.php');
+if ($donneepartie != null) {
+    require('view/curentgame.php');
+} else {
+    require('view/choix_classe.php');
+}
+
 
 require('view/BottomV.php'); ?>

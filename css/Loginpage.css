@@ -2,7 +2,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
 
-input[type=text], input[type=password] {
+.container input[type=text], input[type=password] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -11,29 +11,29 @@ input[type=text], input[type=password] {
   background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+.container input[type=text]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
 
-button {
+.boutonPageLogin {
   background-color: #04AA6D;
   color: white;
   padding: 14px 20px;
   margin: 0px 4px;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 50%;
   opacity: 0.9;
 }
 
-button:hover {
+.boutonPageLogin:hover {
   opacity:1;
 }
 
 .signupbtn {
-  float: left;
-  width: 100%;
+  float: center;
+  width: 50%;
 }
 
 .container {
@@ -58,12 +58,6 @@ button:hover {
   border: 1px solid #888;
   width: 50%; 
 }
-
-
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
  
 
 .close {
@@ -81,6 +75,10 @@ hr {
   cursor: pointer;
 }
 
+.clearfix{
+  text-align: center;
+}
+
 .clearfix::after {
   content: "";
   clear: both;
@@ -90,6 +88,7 @@ hr {
 @media screen and (max-width: 300px) {
   .signupbtn {
      width: 100%;
+
   }
 }
 
