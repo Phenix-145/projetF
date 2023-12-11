@@ -12,5 +12,27 @@ document.addEventListener('DOMContentLoaded', function () {
             const tooltip = this.querySelector('.tooltip');
             tooltip.style.visibility = 'hidden';
         });
-    });
+
+
+
+        container.addEventListener('click', function () {
+            const confirmation = confirm(`Voulez-vous utiliser la class ${this.id} ?`);
+
+            if (confirmation) {
+                // L'utilisateur a confirmé, vous pouvez maintenant utiliser this.id
+                var classe = this.id;
+            $.ajax({
+                type: 'GET',
+                url: 'controlleur/newpartie.php',
+                data: {
+                    classe: classe
+                },
+                success: function(retour) {
+                    $('#resultats').html(retour);
+                    window.location.href = 'index.php';
+                }
+            });
+            }
+        })
+    })
 });

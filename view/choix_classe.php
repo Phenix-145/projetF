@@ -29,14 +29,15 @@ if (!empty($donneeclass)) {
         for ($j = 0; $j < $elementsSurCetteLigne; $j++) {
 
 
-            echo "<td class='tooltip-container'>";
+            echo "<td class='tooltip-container' id='{$donneeclass[$j]['name_class']}'>";
             echo "{$donneeclass[$j]['name_class']}<br>";
             echo "<img src='image/class/{$donneeclass[$j]['img_class']}.png' alt='{$donneeclass[$j]['name_class']}'>";
             echo "<div class='tooltip'>";
-            echo "Attaque: {$donneeclass[$j]['attaqueBase']}<br>";
-            echo "Vitesse: {$donneeclass[$j]['vitesseBase']}<br>";
-            echo "Vie: {$donneeclass[$j]['vieBase']}<br>";
-            echo "Défense: {$donneeclass[$j]['deffenceBase']}<br>";
+            echo "Attaque: {$donneeclass[$j]['attaque']}<br>";
+            echo "Dexterité: {$donneeclass[$j]['dexterite']}<br>";
+            echo "Vitesse: {$donneeclass[$j]['vitesse']}<br>";
+            echo "Vie: {$donneeclass[$j]['vie']}<br>";
+            echo "Défense: {$donneeclass[$j]['defence']}<br>";
             echo "info: {$donneeclass[$j]['libelle_class']}<br>";
             echo "</div>";
             echo "</td>";
@@ -59,5 +60,6 @@ echo "</div>";
 
 ?>
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="javascript/infoclass.js" defer></script>
 

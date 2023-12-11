@@ -11,11 +11,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 require('view/HeaderV.php');
 
-require('view/InfoUserV.php');
+require('controlleur/InfoUserC.php');
 if ($donneepartie != null) {
-    require('view/curentgame.php');
+    require('view/curentgame.php'); //rentre quand donneepartie contie des données de la partie crée ou encour
 } else {
-    require('view/choix_classe.php');
+    require('view/choix_classe.php'); //selection d'une class est création de la partie
 }
 
 

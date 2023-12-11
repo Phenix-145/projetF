@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 
-if (!empty($_POST['password'] && !empty($_POST['speudo']))) {
+if (!empty($_POST['password']) && !empty($_POST['speudo'])) {
     $login = preg_replace("/[^\w\s-]/", '', $_POST['speudo']);
 
 
