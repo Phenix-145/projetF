@@ -16,12 +16,12 @@ if (session_status() === PHP_SESSION_NONE) {
 
 <body>
     <?php
-    if (isset($_SESSION['speudo'])) {
-        echo "<div>$speudo</div>"; 
-        ?>
+    if (isset($_SESSION['speudo'])) {?>
         <div id="user">
             <form method="post" action="controlleur/deconnexion.php">
                 <button type="submit">Déconnexion</button>
             </form>
+            
+            <?php echo "<div>$speudo</div>"; ?> 
         </div>
     <?php } ?>

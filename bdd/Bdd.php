@@ -74,6 +74,14 @@ class Bdd
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public function data_class($numpartie)
+  {
+    $sql = "SELECT nameC, img FROM projetf.info_partie_class where ID_partie = :numPartie;";
+    $query = $this->bdd->prepare($sql);
+    $query->execute(array(":numPartie" => $numpartie));
+    return $query->fetch(PDO::FETCH_ASSOC);
+  }
+
   public function testclass($classe)
   {
     $sql = "SELECT ID_class, name_class, libelle_class, attaque, dexterite, vitesse, vie, defence FROM projetf.class WHERE name_class = :classe;";

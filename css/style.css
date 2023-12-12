@@ -1,6 +1,7 @@
 @import url("Loginpage.css");
 @import url("Menu.css");
 @import url("Select-class.css");
+@import url("Partie.css");
 
 .box{
   display: flex;

@@ -13,7 +13,7 @@ require('view/HeaderV.php');
 
 require('controlleur/InfoUserC.php');
 if ($donneepartie != null) {
-    require('view/curentgame.php'); //rentre quand donneepartie contie des données de la partie crée ou encour
+    require('view/curentgame.php'); //rentre quand donneepartie contie des données de la partie crée ou récupérée
 } else {
     require('view/choix_classe.php'); //selection d'une class est création de la partie
 }

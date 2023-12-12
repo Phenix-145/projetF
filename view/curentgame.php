@@ -1,4 +1,26 @@
 
+<?php 
+
+    require("controlleur/perso_info_class.php");
+
+    echo '<div id="vie-info">';
+    echo 'Vie : <span id="vie-actuelle">' . $donneepartie['perso_vie_actuelle'] . '</span> / <span id="vie-max">' . $donneepartie['perso_vie_max'] . '</span>';
+    echo '</div>';?>
+    <div id="info">Personnage</div>
+    <?php
+    echo '<div id="infos-perso" style="display:none;">';
+    echo 'Informations du personnage :<br>';
+    echo 'CLasse : ' . $dataclass['nameC'] . '<img id="image_class" src="image/class/' . $dataclass["img"]. '.png"> <br>';
+    echo 'Niveau : ' . $donneepartie['perso_lvl'] . '<br>';
+    echo 'Expérience : ' . $donneepartie['exp'] . '<br>';
+    echo 'Attaque : ' . $donneepartie['perso_attaque'] . '<br>';
+    echo 'Dexterite : ' . $donneepartie['exp'] . '<br>';
+    echo 'Vitesse : ' . $donneepartie['perso_vitesse'] . '<br>';
+    echo 'Defence : ' . $donneepartie['perso_def'] . '<br>';
+    echo '</div>';
+    
+    ?>
+
 <div id="mySidenav" class="sidenav">
     <button class="openbtn" onclick="openinventaireC()" id="Carte">Carte</button>
     <button class="openbtn" onclick="openinventaireI()" id="Item">Item</button>
@@ -46,20 +68,4 @@
 
 
 
-<script>
-    function openinventaireC() {
-        document.getElementById("inventairecarte").style.width = "100%";
-    }
-
-    function closeinventaireC() {
-        document.getElementById("inventairecarte").style.width = "0";
-    }
-
-    function openinventaireI() {
-        document.getElementById("inventaireitem").style.width = "100%";
-    }
-
-    function closeinventaireI() {
-        document.getElementById("inventaireitem").style.width = "0";
-    }
-</script>
+    <script src="javascript/partie.js"></script>

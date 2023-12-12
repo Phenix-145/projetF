@@ -10,3 +10,15 @@
     width: calc(100% / 4);
     height: calc(100% / 2);
 }
+
+#user{
+    display: block;
+    width: fit-content;
+    position: absolute;
+    right: 10px;
+}
+
+#user div{
+    text-align: center;
+    margin-top: 5px;
+}

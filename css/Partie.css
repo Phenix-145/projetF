@@ -1,0 +1,24 @@
+#info{
+    margin-top: 8px;
+    margin-bottom: 4px;
+    display: block;
+    width:min-content;
+    border: solid 1px black;
+    background-color: rgb(209, 209, 209);
+    padding: 2px;
+}
+
+#infos-perso{
+    display: block;
+    width:max-content;
+    border: solid 1px rgb(85, 85, 85);
+    padding: 5px;
+}
+
+#image_class{
+    width: 20px;
+    height: 20px;
+    top: 4px;
+    margin-left: 10px;
+    position: relative;
+}
