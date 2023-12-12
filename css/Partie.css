@@ -1,5 +1,17 @@
+
+
+#vie-info{
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: #f9f9f9bf;
+    display: block;
+    width: max-content;
+    padding: 2px;
+}
+
 #info{
     margin-top: 8px;
+    margin-left: 10px;
     margin-bottom: 4px;
     display: block;
     width:min-content;
@@ -9,10 +21,12 @@
 }
 
 #infos-perso{
+    margin-left: 10px;
     display: block;
     width:max-content;
     border: solid 1px rgb(85, 85, 85);
     padding: 5px;
+    background-color: #f9f9f9bf;
 }
 
 #image_class{

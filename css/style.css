@@ -3,6 +3,13 @@
 @import url("Select-class.css");
 @import url("Partie.css");
 
+body, html {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .box{
   display: flex;
 }

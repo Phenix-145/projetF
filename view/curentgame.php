@@ -10,7 +10,7 @@
     <?php
     echo '<div id="infos-perso" style="display:none;">';
     echo 'Informations du personnage :<br>';
-    echo 'CLasse : ' . $dataclass['nameC'] . '<img id="image_class" src="image/class/' . $dataclass["img"]. '.png"> <br>';
+    echo 'CLasse : ' . $dataclass['nameC'] . '<img id="image_class" src="image/class/' . $dataclass["img_class"]. '.png"> <br>';
     echo 'Niveau : ' . $donneepartie['perso_lvl'] . '<br>';
     echo 'Expérience : ' . $donneepartie['exp'] . '<br>';
     echo 'Attaque : ' . $donneepartie['perso_attaque'] . '<br>';
@@ -31,7 +31,7 @@
         <table class="Menuconsomable">
             <tbody>
                 <tr>
-                    <td>test</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -47,7 +47,7 @@
         <table class="Menuconsomable">
             <tbody>
                 <tr>
-                    <td>test</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>

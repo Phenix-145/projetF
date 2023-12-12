@@ -74,9 +74,9 @@ class Bdd
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function data_class($numpartie)
+  public function data_sup_partie($numpartie)
   {
-    $sql = "SELECT nameC, img FROM projetf.info_partie_class where ID_partie = :numPartie;";
+    $sql = "SELECT nameC, img_class, nameB, img_biome, eventeA FROM projetf.infosup_partie where ID = :numPartie;";
     $query = $this->bdd->prepare($sql);
     $query->execute(array(":numPartie" => $numpartie));
     return $query->fetch(PDO::FETCH_ASSOC);
