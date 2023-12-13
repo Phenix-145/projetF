@@ -1,0 +1,26 @@
+#combat-interface {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+}
+
+#ennemy-info {
+    background-color: #f1f1f1b3;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#ennemy-stats {
+    margin-top: 10px;
+    display: none;
+}
+
+#ennemy-stats p {
+    margin: 5px 0;
+}
+
+#ennemy-stats span {
+    font-weight: bold;
+}

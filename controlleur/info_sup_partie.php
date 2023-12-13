@@ -3,6 +3,8 @@ require_once "bdd/Bdd.php";
 $bdd = new Bdd();
 
 $dataclass = $bdd->data_sup_partie($donneepartie['ID_partie']);
+$evenement = $bdd->evenement($donneepartie['ID_partie']);
+$evenement = $evenement['evenement'];
 $imgBiome = $dataclass['img_biome'];
 ?>
 
