@@ -9,11 +9,11 @@ require("controlleur/fightC.php");
     <img id="ennemy-image" src="" alt="Ennemi">
     <div id="ennemy-stats">
         <p>Vie: <span id="ennemy-vie"></span></p>
-        <p>Attaque: <span id="ennemy-attaque"></span></p>
-        <p>Dextérité: <span id="ennemy-dexterite"></span></p>
-        <p>Défense: <span id="ennemy-defence"></span></p>
-        <p>Vitesse: <span id="ennemy-vitesse"></span></p>
-        <p><span id="ennemy-vitesse"></span></p>
+        <p class="ennemy_infoEX">Attaque: <span id="ennemy-attaque"></span></p>
+        <p class="ennemy_infoEX">Dextérité: <span id="ennemy-dexterite"></span></p>
+        <p class="ennemy_infoEX">Défense: <span id="ennemy-defence"></span></p>
+        <p class="ennemy_infoEX">Vitesse: <span id="ennemy-vitesse"></span></p>
+        <p class="ennemy_infoEX"><span id="ennemy-vitesse"></span></p>
     </div>
 </div>
 </div>

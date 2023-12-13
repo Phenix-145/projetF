@@ -14,7 +14,6 @@
 
 #ennemy-stats {
     margin-top: 10px;
-    display: none;
 }
 
 #ennemy-stats p {
@@ -23,4 +22,8 @@
 
 #ennemy-stats span {
     font-weight: bold;
+}
+
+.ennemy_infoEX{
+    display: none;
 }
