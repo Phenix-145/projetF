@@ -54,7 +54,7 @@ if (!empty($donneeclass)) {
     }
     echo "</table>";
 } else {
-    echo "Une erreur s'est produite. Les données sont introuvables. Veuillez patienter et attendre que le problème soit résolu.";
+    echo "Une erreur s'est produite. Les données sont introuvables. Veuillez recharger la page si le probleme est encore présent veuillez attendre que le problème soit résolu. :(";
 }
 echo "</div>";
 

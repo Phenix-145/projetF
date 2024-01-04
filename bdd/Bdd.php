@@ -106,9 +106,6 @@ class Bdd
     return $query->fetch(PDO::FETCH_ASSOC);
   }
 
-
-
-
   public function New_combat($numpartie)
   {
     $sql = "SELECT Numennemy FROM projetf.recup_table_mob WHERE numPartie = :numPartie;";
@@ -123,6 +120,7 @@ class Bdd
     $query->execute(array(":numE" => $table[$Num - 1]['Numennemy']));
     $datamob = $query->fetch(PDO::FETCH_ASSOC);
 
+    
     $sql = "INSERT INTO projetf.saveennemy (ennemy_ID, partie_ID, vie, attaque, dexterite, defence, vitesse) 
     VALUES (:IDennemy, :IDpartie, :vie, :attaque, :dexterite, :defence, :vitesse)
     ON DUPLICATE KEY UPDATE 

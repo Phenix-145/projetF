@@ -3,6 +3,7 @@
     align-items: center;
     justify-content: center;
     height: 50%;
+    flex-direction: column;
 }
 
 #ennemy-info {

@@ -6,7 +6,6 @@
 
     if ($evenement == "fight"){
         require("fightV.php");
-        print_r($evenement);
     }
 
 
