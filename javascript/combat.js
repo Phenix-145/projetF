@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 var vieEnnemi = parseInt(document.getElementById("ennemy-vie").textContent);
                 var attaqueEnnemi = parseInt(document.getElementById("ennemy-attaque").textContent);
                 var dexEnnemi = parseInt(document.getElementById("ennemy-dexterite").textContent);
-                var defenseEnnemi = parseInt(document.getElementById("ennemy-attaque").textContent);
+                var defenseEnnemi = parseInt(document.getElementById("ennemy-defence").textContent);
                 var vitesseEnnemi = parseInt(document.getElementById("ennemy-vitesse").textContent);
 
                 // Création d'un tableau en deux dimensions
@@ -94,18 +94,55 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (perfectpari == false) {
                 dammage = Math.max(attaqueentiteactive - Defentitecible, 0);
-                if(dammage == 0){
+                if (dammage == 0) {
                     console.log("la défence sup Aucun dégât n'est subit");
                 }
                 tableauDeuxDimensions[entitecible][0] = Math.max(tableauDeuxDimensions[entitecible][0] - dammage, 0);
-                if(entitecible == 0){ 
-                    Partie.mettreAJourValeurs(tableauDeuxDimensions[entitecible][0] );
-                    document.getElementById("perso-vie-actuelle").innerHTML=tableauDeuxDimensions[entitecible][0];
-                }else{
-                    document.getElementById("ennemy-vie").innerHTML= tableauDeuxDimensions[entitecible][0];
+                if (entitecible == 0) {
+                    Partie.mettreAJourValeurs(tableauDeuxDimensions[entitecible][0]);
+                    document.getElementById("perso-vie-actuelle").innerHTML = tableauDeuxDimensions[entitecible][0];
+                    // Vérifier si le joueur a sa vie à 0
+                    if (tableauDeuxDimensions[0][0] <= 0) {
+                        var vieJoueur = tableauDeuxDimensions[0][0];
+                        var vieEnnemi = tableauDeuxDimensions[1][0];
+
+                        // Exécuter le fichier paliersup.js
+                        var scriptElement = document.createElement('script');
+                        scriptElement.src = 'javascript/GameOver.js';
+                        document.head.appendChild(scriptElement);
+
+                        // Attendre que le script soit chargé avant d'appeler la fonction
+                        scriptElement.onload = function () {
+                            // Vérifier si la fonction finDePartie est définie dans GameOver.js
+                            if (typeof finDePartie === 'function') {
+                                // Appeler la fonction avec les valeurs de vie
+                                finDePartie(vieJoueur, vieEnnemi);
+                            }
+                        };
+                    }
+                } else {
+                    document.getElementById("ennemy-vie").innerHTML = tableauDeuxDimensions[entitecible][0];
+                    // Vérifier si l'ennemi a une vie égale à 0
+                    if (tableauDeuxDimensions[1][0] <= 0) {
+                        var vieJoueur = tableauDeuxDimensions[0][0];
+                        var vieEnnemi = tableauDeuxDimensions[1][0];
+                        // Exécuter le fichier paliersup.js
+                        var scriptElement = document.createElement('script');
+                        scriptElement.src = 'javascript/paliersup.js';
+                        document.head.appendChild(scriptElement);
+
+                        // Attendre que le script soit chargé avant d'appeler la fonction
+                        scriptElement.onload = function () {
+                            // Vérifier si la fonction finDepalier est définie dans GameOver.js
+                            if (typeof finDepalier === 'function') {
+                                // Appeler la fonction avec les valeurs de vie
+                                finDepalier(vieJoueur, vieEnnemi);
+                            }
+                        };
+                    }
                 }
             }
-            
+
         }
 
 
@@ -147,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
         paradeEnnemi = false;
         paradeJoueur = false;
     }
+
 
     // Gestionnaire d'événement pour le bouton "Attaquer"
     attaquerBtn.addEventListener("click", function () {
