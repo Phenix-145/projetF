@@ -7,7 +7,7 @@ class Bdd
   public function __construct()
   {
     require_once 'data.php';
-    $dsn = 'mysql:dbname=pmu_bdd;host=localhost:3306';
+    $dsn = 'mysql:dbname=projetf;host=localhost:3306';
     $dbUser = recupnam();
     $dbPwd = recuppwd();
 
@@ -120,53 +120,67 @@ class Bdd
     $query->execute(array(":numE" => $table[$Num - 1]['Numennemy']));
     $datamob = $query->fetch(PDO::FETCH_ASSOC);
 
-    
+
     $sql = "INSERT INTO projetf.saveennemy (ennemy_ID, partie_ID, vie, attaque, dexterite, defence, vitesse) 
     VALUES (:IDennemy, :IDpartie, :vie, :attaque, :dexterite, :defence, :vitesse)
     ON DUPLICATE KEY UPDATE 
     vie = VALUES(vie), attaque = VALUES(attaque), dexterite = VALUES(dexterite), defence = VALUES(defence), vitesse = VALUES(vitesse)";
     $query = $this->bdd->prepare($sql);
-    $query->execute(array(
-      ":IDennemy" => $datamob['ID_ennemy'],
-      ":IDpartie" => $numpartie,
-      ":vie" => $datamob['vie'],
-      ":attaque" => $datamob['attaque'],
-      ":dexterite" => $datamob['dexterite'],
-      ":defence" => $datamob['defence'],
-      ":vitesse" => $datamob['vitesse']
-    ));
+    $query->execute(
+      array(
+        ":IDennemy" => $datamob['ID_ennemy'],
+        ":IDpartie" => $numpartie,
+        ":vie" => $datamob['vie'],
+        ":attaque" => $datamob['attaque'],
+        ":dexterite" => $datamob['dexterite'],
+        ":defence" => $datamob['defence'],
+        ":vitesse" => $datamob['vitesse']
+      )
+    );
 
 
     $data = $this->recup_combat($numpartie);
     return $data;
   }
 
-
-
-
-
-
-
   public function GenerationPartie($dataclass, $numclient)
   {
     $sql = "INSERT INTO projetf.partie (perso_lvl, exp, perso_attaque, dexterite, perso_vitesse, perso_vie_max, perso_vie_actuelle, perso_def, user_ID, class_ID) 
     VALUES (:lvl, :exp, :attaque, :dexterite, :vitesse, :viemax, :vie, :def, :user, :classid)";
     $query = $this->bdd->prepare($sql);
-    $query->execute(array(
-      ":lvl" => 0,
-      ":exp" => 0,
-      ":attaque" => $dataclass['attaque'],
-      ":dexterite" => $dataclass['dexterite'],
-      ":vitesse" => $dataclass['vitesse'],
-      ":viemax" => $dataclass['vie'],
-      ":vie" => $dataclass['vie'],
-      ":def" => $dataclass['defence'],
-      ":user" => $numclient,
-      ":classid" => $dataclass['ID_class']
-    ));
+    $query->execute(
+      array(
+        ":lvl" => 0,
+        ":exp" => 0,
+        ":attaque" => $dataclass['attaque'],
+        ":dexterite" => $dataclass['dexterite'],
+        ":vitesse" => $dataclass['vitesse'],
+        ":viemax" => $dataclass['vie'],
+        ":vie" => $dataclass['vie'],
+        ":def" => $dataclass['defence'],
+        ":user" => $numclient,
+        ":classid" => $dataclass['ID_class']
+      )
+    );
     $data = $this->donnéepartieActive($numclient);
     return $data;
   }
+
+  public function update_vie($numpartie, $vieJoueur, $vieEnnemi)
+  {
+    // Mettre à jour la vie du joueur dans la table "partie" avec une condition
+    if ($vieJoueur <= 0) {
+      $requeteJoueur = $this->bdd->prepare('UPDATE partie SET perso_vie_actuelle = :vieJoueur, partie_END = 1 WHERE ID_partie = :idPartie');
+    } else {
+      $requeteJoueur = $this->bdd->prepare('UPDATE partie SET perso_vie_actuelle = :vieJoueur WHERE ID_partie = :idPartie');
+    }
+    $requeteJoueur->execute(array('vieJoueur' => $vieJoueur, 'idPartie' => $numpartie));
+
+    // Mettre à jour la vie de l'ennemi dans la table "statutennemie"
+    $requeteEnnemi = $this->bdd->prepare('UPDATE saveennemy SET vie = :vieEnnemi WHERE partie_ID = :idPartie');
+    $requeteEnnemi->execute(array('vieEnnemi' => $vieEnnemi, 'idPartie' => $numpartie));
+  }
+
 
 }
 ?>

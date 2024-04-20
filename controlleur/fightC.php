@@ -7,5 +7,4 @@ if ($combat == null) {
     $combat = $bdd->New_combat($donneepartie['ID_partie']);
 }
 
-
 ?>

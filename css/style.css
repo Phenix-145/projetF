@@ -2,6 +2,7 @@
 @import url("Menu.css");
 @import url("Select-class.css");
 @import url("Partie.css");
+@import url("FinPartie.css");
 
 body, html {
   overflow: hidden;

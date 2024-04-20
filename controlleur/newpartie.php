@@ -10,7 +10,6 @@ if ( isset( $_GET["classe"])){
     
     $dataclass = $bdd->testclass($classeSelect);
     if ($dataclass != null) {
-        print_r($dataclass);
         $numclient =  $_SESSION["NClient"];
         $donneepartie = $bdd->GenerationPartie($dataclass, $numclient);
         

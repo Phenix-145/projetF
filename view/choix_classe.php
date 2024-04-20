@@ -1,4 +1,5 @@
 <?php
+
 require("Controlleur/infoclassC.php");
 
 echo "<div class='center'>";

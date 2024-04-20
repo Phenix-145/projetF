@@ -105,8 +105,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (tableauDeuxDimensions[0][0] <= 0) {
                         var vieJoueur = tableauDeuxDimensions[0][0];
                         var vieEnnemi = tableauDeuxDimensions[1][0];
-
-                        // Exécuter le fichier paliersup.js
+                        
+                        // Exécuter le fichier GameOver.js
                         var scriptElement = document.createElement('script');
                         scriptElement.src = 'javascript/GameOver.js';
                         document.head.appendChild(scriptElement);
