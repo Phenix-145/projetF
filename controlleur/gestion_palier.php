@@ -11,7 +11,7 @@ function changer_palier() {
     $donneepartie = $bdd->donnéepartieActive($_SESSION["NClient"]); //rajouté car la variable est inconnu sur ce fichier 
 
     // Chance de changer le biome (1 chance sur 10)
-if (rand(1, 1) === 1) {
+if (rand(1, 10) === 1) {
     $imgBiome = $bdd->changerBiome($donneepartie['ID_partie']); // Fonction pour mettre à jour le biome
     ?>
     <script>

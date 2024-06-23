@@ -189,7 +189,7 @@ class Bdd
 
   public function update_vie($numpartie, $vieJoueur, $vieEnnemi)
   {
-    // Mettre à jour la vie du joueur dans la table "partie" avec une condition
+    // si vie du joueur et = a 0 alors mettre 1 a partie_END
     if ($vieJoueur <= 0) {
       $requeteJoueur = $this->bdd->prepare('UPDATE partie SET perso_vie_actuelle = :vieJoueur, partie_END = 1 WHERE ID_partie = :idPartie');
     } else {
