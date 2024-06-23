@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
 
-        //determine lorde de passage dans le tour 0 = Joueur et 1 = ennemie
+        //determine l'orde de passage dans le tour 0 = Joueur et 1 = ennemie en fonction la la vitesse 
         function determinerOrdreAttaque() {
             if (tableauDeuxDimensions[0][3] > tableauDeuxDimensions[1][3]) {
                 return [0, 1];
@@ -61,88 +61,87 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
 
-        function attaque(entiteactive, entitecibleParade) {
-            if (entiteactive == 0) {
-                entitecible = 1;
-            } else {
-                entitecible = 0;
+        function attaque(entiteActive, entiteCibleParade) {
+            var entiteCible = entiteActive === 0 ? 1 : 0;
+        
+            // Calculer l'attaque
+            var attaqueCritique = Math.random() < (tableauDeuxDimensions[entiteActive][2] / 100);
+            var attaqueEntiteActive = tableauDeuxDimensions[entiteActive][1];
+            if (attaqueCritique) {
+                attaqueEntiteActive *= 2;
+                console.log("Coup Critique! Dégâts doublés.");
             }
-
-            // Vérifier si la parade fait un "crit"
-            var AttqueCritique = Math.random() < (tableauDeuxDimensions[entiteactive][2] / 100);
-            if (!AttqueCritique) {
-                attaqueentiteactive = tableauDeuxDimensions[entiteactive][1];
-            } else {
-                attaqueentiteactive = tableauDeuxDimensions[entiteactive][1] * 2;
-                console.log("Coup Critique dégat doublée");
-            }
-
-            var perfectpari = false;
-            //gestion de la parade
-            if (entitecibleParade == true) {
-                // Vérifier si la parade fait un "crit"
-                var paradeCritReussi = Math.random() < (tableauDeuxDimensions[entitecible][2] / 100);
-                if (!paradeCritReussi) {
-                    Defentitecible = tableauDeuxDimensions[entitecible][4] * 2;
+        
+            // Gestion de la parade
+            var perfectPari = false;
+            var defEntiteCible = tableauDeuxDimensions[entiteCible][4];
+            if (entiteCibleParade) {
+                var paradeCritReussi = Math.random() < (tableauDeuxDimensions[entiteCible][2] / 100);
+                if (paradeCritReussi) {
+                    console.log("Parade parfaite! Aucun dégât.");
+                    perfectPari = true;
                 } else {
-                    console.log("Parade parfaite ! Aucun dégât n'est appliqué.");
-                    perfectpari = true;
+                    defEntiteCible *= 2;
                 }
+            }
+        
+            // Appliquer les dégâts si pas de parade parfaite
+            if (!perfectPari) {
+                // Calculer le pourcentage de réduction de dégâts en fonction de la défense
+                var reductionDegats = defEntiteCible / (defEntiteCible + 100);
+        
+                var damage = parseInt(Math.max(attaqueEntiteActive * (1 - reductionDegats), 0));
+        
+                if (damage === 0) {
+                    console.log("La défense a tout bloqué. Aucun dégât.");
+                }
+                tableauDeuxDimensions[entiteCible][0] = Math.max(tableauDeuxDimensions[entiteCible][0] - damage, 0);
+        
+                // Mise à jour de l'interface utilisateur et vérification de la vie
+                miseAJourVieUI(entiteCible);
+        
+                // Vérifier si le joueur ou l'ennemi est mort
+                verifierMort(entiteCible);
+            }
+        }
+        
+        
+        function miseAJourVieUI(entiteCible) {
+            if (entiteCible === 0) {
+                Partie.mettreAJourValeurs(tableauDeuxDimensions[entiteCible][0]);
+                document.getElementById("perso-vie-actuelle").innerHTML = tableauDeuxDimensions[entiteCible][0];
             } else {
-                Defentitecible = tableauDeuxDimensions[entitecible][4];
+                document.getElementById("ennemy-vie").innerHTML = tableauDeuxDimensions[entiteCible][0];
             }
-
-            if (perfectpari == false) {
-                dammage = Math.max(attaqueentiteactive - Defentitecible, 0);
-                if (dammage == 0) {
-                    console.log("la défence sup Aucun dégât n'est subit");
-                }
-                tableauDeuxDimensions[entitecible][0] = Math.max(tableauDeuxDimensions[entitecible][0] - dammage, 0);
-                if (entitecible == 0) {
-                    Partie.mettreAJourValeurs(tableauDeuxDimensions[entitecible][0]);
-                    document.getElementById("perso-vie-actuelle").innerHTML = tableauDeuxDimensions[entitecible][0];
-                    // Vérifier si le joueur a sa vie à 0
-                    if (tableauDeuxDimensions[0][0] <= 0) {
-                        var vieJoueur = tableauDeuxDimensions[0][0];
-                        var vieEnnemi = tableauDeuxDimensions[1][0];
-                        
-                        // Exécuter le fichier GameOver.js
-                        var scriptElement = document.createElement('script');
-                        scriptElement.src = 'javascript/GameOver.js';
-                        document.head.appendChild(scriptElement);
-
-                        // Attendre que le script soit chargé avant d'appeler la fonction
-                        scriptElement.onload = function () {
-                            // Vérifier si la fonction finDePartie est définie dans GameOver.js
-                            if (typeof finDePartie === 'function') {
-                                // Appeler la fonction avec les valeurs de vie
-                                finDePartie(vieJoueur, vieEnnemi);
-                            }
-                        };
+        }
+        
+        function verifierMort(entiteCible) {
+            var vieJoueur = tableauDeuxDimensions[0][0];
+            var vieEnnemi = tableauDeuxDimensions[1][0];
+        
+            if (entiteCible === 0 && vieJoueur <= 0) {
+                //charge le scipt pour le game over
+                chargerScript('javascript/GameOver.js', function () {
+                    if (typeof finDePartie === 'function') {
+                        finDePartie(vieJoueur, vieEnnemi);
                     }
-                } else {
-                    document.getElementById("ennemy-vie").innerHTML = tableauDeuxDimensions[entitecible][0];
-                    // Vérifier si l'ennemi a une vie égale à 0
-                    if (tableauDeuxDimensions[1][0] <= 0) {
-                        var vieJoueur = tableauDeuxDimensions[0][0];
-                        var vieEnnemi = tableauDeuxDimensions[1][0];
-                        // Exécuter le fichier paliersup.js
-                        var scriptElement = document.createElement('script');
-                        scriptElement.src = 'javascript/paliersup.js';
-                        document.head.appendChild(scriptElement);
-
-                        // Attendre que le script soit chargé avant d'appeler la fonction
-                        scriptElement.onload = function () {
-                            // Vérifier si la fonction finDepalier est définie dans GameOver.js
-                            if (typeof finDepalier === 'function') {
-                                // Appeler la fonction avec les valeurs de vie
-                                finDepalier(vieJoueur, vieEnnemi);
-                            }
-                        };
+                });
+            } else if (entiteCible === 1 && vieEnnemi <= 0) {
+                //charge le script pour passer au palier supérieur 
+                chargerScript('javascript/paliersup.js', function () {
+                    if (typeof finDepalier === 'function') {
+                        finDepalier(vieJoueur, vieEnnemi);
                     }
-                }
+                });
             }
+        }
 
+        function chargerScript(src, callback) {
+            var scriptElement = document.createElement('script');
+            scriptElement.src = src;
+            document.head.appendChild(scriptElement);
+        
+            scriptElement.onload = callback;
         }
 
 

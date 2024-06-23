@@ -12,7 +12,6 @@ if ( isset( $_GET["classe"])){
     if ($dataclass != null) {
         $numclient =  $_SESSION["NClient"];
         $donneepartie = $bdd->GenerationPartie($dataclass, $numclient);
-        
         exit();
     }else{
         header("Location: ../index.php");
